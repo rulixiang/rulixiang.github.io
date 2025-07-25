@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Lixiang Ru, School of Computer Science, Wuhan University, Ant Group, Computer Vision">
+    <meta name="description" content="Lixiang Ru's personal academic homepage">
+    
+    <!-- 你原来的 jemdoc.css 链接，可以保留，但下面的新样式会覆盖和增强它 -->
+    <link rel="stylesheet" href="./jemdoc.css" type="text/css">
+    
+    <title>Lixiang Ru - Personal Homepage</title>
+
+    <style>
+        /* --- 全局和基础样式 --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdfdfd;
+            margin: 0;
+            padding: 0;
+        }
+
+        #layout-content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        h1 { font-size: 2.2em; }
+        h2 { font-size: 1.8em; }
+        h3 { font-size: 1.4em; border-bottom: none; }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        li {
+            margin-bottom: 15px;
+        }
+        
+        strong, b {
+            color: #2c3e50;
+        }
+
+        /* --- 顶部个人信息 --- */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 30px;
+        }
+        .profile-info {
+            flex-grow: 1;
+        }
+        .profile-info h1 {
+            margin: 0;
+            border-bottom: none;
+        }
+        .profile-info h1 .name-cn {
+            height: 32px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        .profile-info h3 {
+            margin: 10px 0;
+        }
+        .profile-links a {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .profile-photo img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* 圆形头像 */
+            object-fit: cover;
+            border: 3px solid #ecf0f1;
+        }
+
+        /* --- 经历列表 (教育/工作) --- */
+        .experience-item {
+            position: relative;
+            padding-right: 150px; /* 为 logo 留出空间 */
+            min-height: 70px;
+            margin-bottom: 20px;
+        }
+        .experience-item .logo {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 120px;
+            height: auto;
+        }
+        .experience-item .logo-whu {
+            width: 70px; /* 武大 logo 尺寸调整 */
+        }
+        .experience-item p { margin: 5px 0; }
+        .experience-item .title { font-size: 1.1em; }
+
+
+        /* --- 发表文章列表 --- */
+        .publications-list li {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        .publication-image img {
+            width: 250px; /* 统一图片宽度 */
+            flex-shrink: 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .publication-details .title {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .publication-details .authors {
+            font-style: italic;
+            color: #555;
+            margin: 5px 0;
+        }
+        .publication-details .venue {
+            margin: 5px 0;
+            color: #333;
+        }
+        .publication-details .links a {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        /* --- 奖项列表 --- */
+        .awards-list li {
+            margin-bottom: 8px;
+        }
+
+        /* --- 页脚 --- */
+        #footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+        }
+
+        /* --- 响应式设计：适配移动设备 --- */
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column; /* 垂直排列 */
+                text-align: center;
+            }
+            .profile-photo {
+                order: -1; /* 将照片移到最上方 */
+            }
+            .profile-links {
+                text-align: center;
+                margin-top: 15px;
+            }
+            .experience-item {
+                padding-right: 0; /* 移除右边距 */
+            }
+            .experience-item .logo {
+                position: static; /* logo 恢复正常文档流 */
+                float: right;
+                margin-left: 15px;
+            }
+            .publications-list li {
+                flex-direction: column; /* 垂直排列 */
+            }
+            .publication-image img {
+                width: 100%; /* 图片宽度占满 */
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="layout-content">
+
+        <!-- 个人信息头部 -->
+        <header class="profile-header">
+            <div class="profile-info">
+                <h1>Lixiang Ru <img src="./assets/CN_name.png" alt="茹立祥" class="name-cn"></h1>
+                <h3>Ph.D in Computer Science</h3>
+                <p>School of Computer Science, Wuhan University.</p>
+                <p>Currently a Computer Vision Researcher at <strong>Ant Group</strong>.</p>
+                <p class="profile-links">
+                    [<a href="mailto:rulixiang@outlook.com">Email</a>]
+                    [<a href="https://github.com/rulixiang">GitHub</a>]
+                    [<a href="https://scholar.google.com/citations?user=y7wegKQAAAAJ">Google Scholar</a>]
+                </p>
+            </div>
+            <div class="profile-photo">
+                <img src="assets/me.jpg" alt="Photo of Lixiang Ru">
+            </div>
+        </header>
+        
+        <main>
+            <!-- 个人简介 -->
+            <section id="biography">
+                <h2>Biography</h2>
+                <p>
+                    I'm currently a computer vision researcher at <a href="https://www.antgroup.com">Ant Group</a>. I received
+                    my Ph.D degree from the <a href="http://cs.whu.edu.cn/">School of Computer Science</a>, <a
+                        href="https://www.whu.edu.cn/">Wuhan University</a>, in 2023. Before that, I received my Bachelor's
+                    degree from <a href="http://cse.whu.edu.cn/">School of Cyber Science and Engineering</a>, <a
+                        href="https://www.whu.edu.cn/">Wuhan University</a>.
+                </p>
+                <p>
+                    My research interests include semantic segmentation, weakly-supervised semantic segmentation,
+                    self-supervised learning and other visual understanding problems.
+                </p>
+            </section>
+
+            <!-- 教育背景 -->
+            <section id="education">
+                <h2>Education</h2>
+                <ul class="experience-list">
+                    <li class="experience-item">
+                        <img src="./assets/logos/whu.png" alt="Wuhan University Logo" class="logo logo-whu">
+                        <p class="title"><a href="http://cs.whu.edu.cn/"><strong>School of Computer Science</strong></a>, <a href="https://www.whu.edu.cn/"><strong>Wuhan University</strong></a></p>
+                        <p><strong>Ph.D</strong> in Computer Science, 2018.09 - 2023.06.</p>
+                    </li>
+                    <li class="experience-item">
+                        <img src="./assets/logos/whu.png" alt="Wuhan University Logo" class="logo logo-whu">
+                        <p class="title"><a href="http://cse.whu.edu.cn/"><strong>School of Cyber Science and Engineering</strong></a>, <a href="https://www.whu.edu.cn/"><strong>Wuhan University</strong></a></p>
+                        <p><strong>B.Sc</strong> in Information Security, 2014.09 - 2018.06.</p>
+                    </li>
+                </ul>
+            </section>
+            
+            <!-- 工作经历 -->
+            <section id="experience">
+                <h2>Work Experience</h2>
+                <ul class="experience-list">
+                    <li class="experience-item">
+                        <img src="./assets/logos/ant_group.png" alt="Ant Group Logo" class="logo">
+                        <p class="title"><a href="https://www.antgroup.com"><strong>Ant Group</strong></a></p>
+                        <p><strong>Senior Algorithm Engineer</strong>, 2023.07 - Present.</p>
+                    </li>
+                    <li class="experience-item">
+                        <img src="./assets/logos/jd.png" alt="JD Explore Academy Logo" class="logo">
+                        <p class="title"><a href="#"><strong>JD Explore Academy</strong></a></p>
+                        <p><strong>Research Intern</strong>, 2021.03 - 2022.11.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 发表文章 -->
+            <section id="publications">
+                <h2>Publications</h2>
+                <p>For a full list, please visit my <a href="https://scholar.google.com/citations?user=y7wegKQAAAAJ">Google Scholar</a> profile.</p>
+                <p><b><sup>#</sup></b>: Co-first authors.</p>
+                
+                <ul class="publications-list">
+                    
+                    <!-- 每篇论文一个 li 标签 -->
+                    <li>
+                        <div class="publication-image">
+                            <img src="assets/imgs/arxiv2025_m2-reasoning.jpg" alt="M2-Reasoning paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2507.08306">M2-Reasoning: Empowering MLLMs with Unified General and Spatial Reasoning</a></p>
+                            <p class="authors">Fudong Wang, Jiajia Liu, Jingdong Chen, Jun Zhou, Kaixiang Ji, <b>Lixiang Ru</b>, Qingpei Guo, Ruobing Zheng, Tianqi Li, Yi Yuan, Yifan Mao, Yuting Xiao, Ziping Ma, <b>(Alphabetical Order)</b></p>
+                            <p class="venue">arXiv, 2025.</p>
+                            <p class="links">[<a href="https://arxiv.org/abs/2507.08306">Paper</a>]</p>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="publication-image">
+                             <img src="assets/imgs/arxiv2025_ming-uni.jpg" alt="Ming-Lite-Uni paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2505.02471">Ming-Lite-Uni: Advancements in Unified Architecture for Natural Multimodal Interaction</a></p>
+                            <p class="authors">Biao Gong, Cheng Zou, Dandan Zheng, Hu Yu, Jingdong Chen, Jianxin Sun, Junbo Zhao, Jun Zhou, Kaixiang Ji, <b>Lixiang Ru</b>, Libin Wang, Qingpei Guo, Rui Liu, Weilong Chai, Xinyu Xiao, Ziyuan Huang, <b>(Alphabetical Order)</b></p>
+                            <p class="venue">arXiv, 2025.</p>
+                            <p class="links">[<a href="https://arxiv.org/abs/2505.02471">Paper</a>]</p>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="publication-image">
+                             <img src="assets/imgs/neurips2025_argenseg.jpg" alt="ARGenSeg paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="./">ARGenSeg: Image Segmentation with Autoregressive Image Generation Model</a></p>
+                            <p class="authors">Xiaolong Wang, <b>Lixiang Ru<sup>#</sup></b>, Ziyuan Huang, Kaixiang Ji, DanDan Zheng, Jingdong Chen, Jun Zhou</p>
+                            <p class="venue">Neural Information Processing Systems (<b>NeurIPS</b>), 2025.</p>
+                            <p class="links">[<a href="./">Paper</a>]</p>
+                        </div>
+                    </li>
+
+                    <!-- ... 在这里继续添加其他论文 ... -->
+                    
+                    <li>
+                        <div class="publication-image">
+                            <img src="assets/imgs/CVPR23_TOCO.png" alt="TOCO paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2303.01267">Token Contrast for Weakly-Supervised Semantic Segmentation</a></p>
+                            <p class="authors"><b>Lixiang Ru</b>, Heliang Zheng, Yibing Zhan, Bo Du</p>
+                            <p class="venue">IEEE Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>), 2023.</p>
+                            <p class="links">[<a href="https://arxiv.org/abs/2303.01267">Paper</a>] [<a href="https://github.com/rulixiang/ToCo">Code</a>] [<a href="assets/files/CVPR2023_TOCO_poster.pdf">Poster</a>]</p>
+                        </div>
+                    </li>
+                </ul>
+                <p><i>(为保持简洁，此处仅展示部分论文，你可以按此格式添加所有论文。)</i></p>
+            </section>
+            
+            <!-- 荣誉奖项 -->
+            <section id="honors">
+                <h2>Honors &amp; Awards</h2>
+                <ul class="awards-list">
+                    <li>2023.07 &nbsp;&nbsp; <b><i>Ant Star</i></b> Program; &nbsp;&nbsp; Ant Group;</li>
+                    <li>2023.04 &nbsp;&nbsp; Outstanding Graduate Student; &nbsp;&nbsp; Wuhan University;</li>
+                    <li>2022.10 &nbsp;&nbsp; National Scholarship; &nbsp;&nbsp; Wuhan University;</li>
+                    <li>2022.05 &nbsp;&nbsp; Second Prize of Doctoral Forum; &nbsp;&nbsp; School of Computer Science, Wuhan University;</li>
+                    <li>2020.04 &nbsp;&nbsp; <a href="./assets/files/GRSS_TPPA_2020.pdf">IEEE GRSS Transactions Prize Paper Award</a>; &nbsp;&nbsp; IEEE GRSS Society;</li>
+                    <!-- ... 更多奖项 ... -->
+                </ul>
+            </section>
+
+            <!-- 学术服务 -->
+            <section id="service">
+                <h2>Academic Service</h2>
+                <ul>
+                    <li><strong>Journal Reviewer:</strong> TPAMI, IJCV, TIP, TNNLS, TMM, TCSVT, TGRS, TAI, PR, Neurocomputing, ...</li>
+                    <li><strong>Conference Reviewer:</strong> CVPR, ICCV, NeurIPS, ECCV, AAAI, ACM MM, ...</li>
+                </ul>
+            </section>
+        </main>
+        
+        <footer id="footer">
+            <div id="footer-text">
+                <p>&copy; 2024 Lixiang Ru. Last updated on <script>document.write(new Date().toLocaleDateString());</script>.</p>
+            </div>
+            <div align='center'>
+                <a href="https://info.flagcounter.com/f8Fc"><img
+                        src="https://s01.flagcounter.com/count/f8Fc/bg_FFFFFF/txt_000000/border_FFFFFF/columns_8/maxflags_24/viewers_0/labels_0/pageviews_1/flags_0/percent_0/"
+                        alt="Flag Counter" border="0"></a>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
+
