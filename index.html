@@ -1,385 +1,508 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Lixiang Ru, School of Computer Science, Wuhan University, Ant Group, Computer Vision">
+    <meta name="description" content="Lixiang Ru's personal academic homepage">
+    
+    <!-- 你原来的 jemdoc.css 链接，可以保留，但下面的新样式会覆盖和增强它 -->
+    <link rel="stylesheet" href="./jemdoc.css" type="text/css">
+    
+    <title>Lixiang Ru - Personal Homepage</title>
 
-	<meta name="keywords" content="Lixiang Ru, School of Computer Science, Wuhan University.">
-	<meta name="description" content="Lixiang Ru &#39;s home page">
-	<link rel="stylesheet" href="./jemdoc.css" type="text/css">
-	<title>Lixiang Ru</title>
+    <style>
+        /* --- 全局和基础样式 --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdfdfd;
+            margin: 0;
+            padding: 0;
+        }
 
+        #layout-content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        h1 { font-size: 2.2em; }
+        h2 { font-size: 1.8em; }
+        h3 { font-size: 1.4em; border-bottom: none; }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        li {
+            margin-bottom: 15px;
+        }
+        
+        strong, b {
+            color: #2c3e50;
+        }
+
+        /* --- 顶部个人信息 --- */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 30px;
+        }
+        .profile-info {
+            flex-grow: 1;
+        }
+        .profile-info h1 {
+            margin: 0;
+            border-bottom: none;
+        }
+        .profile-info h1 .name-cn {
+            height: 32px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        .profile-info h3 {
+            margin: 10px 0;
+        }
+        .profile-links a {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .profile-photo img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* 圆形头像 */
+            object-fit: cover;
+            border: 3px solid #ecf0f1;
+        }
+
+        /* --- 经历列表 (教育/工作) --- */
+        .experience-item {
+            position: relative;
+            padding-right: 150px; /* 为 logo 留出空间 */
+            min-height: 70px;
+            margin-bottom: 20px;
+        }
+        .experience-item .logo {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 120px;
+            height: auto;
+        }
+        .experience-item .logo-whu {
+            width: 70px; /* 武大 logo 尺寸调整 */
+        }
+        .experience-item p { margin: 5px 0; }
+        .experience-item .title { font-size: 1.1em; }
+
+
+        /* --- 发表文章列表 --- */
+        .publications-list li {
+            display: flex;
+            gap: 20px;
+            /* align-items: flex-start; */
+            margin-bottom: 30px;
+        }
+        .publication-image img {
+            width: 250px; /* 统一图片宽度 */
+            flex-shrink: 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            /* align-items: center */
+        }
+        .publication-details .title {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .publication-details .authors {
+            font-style: italic;
+            color: #555;
+            margin: 5px 0;
+        }
+        .publication-details .venue {
+            margin: 5px 0;
+            color: #333;
+        }
+        .publication-details .links a {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .publication-item {
+            /* 1. 核心布局属性 */
+            display: flex;
+            align-items: center; /* 垂直居中 */
+            gap: 20px;           /* 元素间距 */
+
+            /* 2. 添加一个边框，用于清晰地看到 li 元素的边界
+            border: 2px solid red; 
+            margin-bottom: 20px;
+            padding: 10px; */
+        }
+        
+        /* --- 奖项列表 --- */
+        .awards-list li {
+            margin-bottom: 8px;
+        }
+
+        /* --- 页脚 --- */
+        #footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+        }
+
+        /* --- 响应式设计：适配移动设备 --- */
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column; /* 垂直排列 */
+                text-align: center;
+            }
+            .profile-photo {
+                order: -1; /* 将照片移到最上方 */
+            }
+            .profile-links {
+                text-align: center;
+                margin-top: 15px;
+            }
+            .experience-item {
+                padding-right: 0; /* 移除右边距 */
+            }
+            .experience-item .logo {
+                position: static; /* logo 恢复正常文档流 */
+                float: right;
+                margin-left: 15px;
+            }
+            .publications-list li {
+                flex-direction: column; /* 垂直排列 */
+            }
+            .publication-image img {
+                width: 100%; /* 图片宽度占满 */
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div id="layout-content">
 
-	<div id="layout-content" style="margin-top:25px">
+        <!-- 个人信息头部 -->
+        <header class="profile-header">
+            <div class="profile-info">
+                <h1>Lixiang Ru <img src="./assets/CN_name.png" alt="茹立祥" class="name-cn"></h1>
+                <h3>Ph.D in Computer Science</h3>
+                <p>School of Computer Science, Wuhan University.</p>
+                <p>Currently a Computer Vision Researcher at <strong>Ant Group</strong>.</p>
+                <p class="profile-links">
+                    [<a href="mailto:rulixiang@outlook.com">Email</a>]
+                    [<a href="https://github.com/rulixiang">GitHub</a>]
+                    [<a href="https://scholar.google.com/citations?user=y7wegKQAAAAJ">Google Scholar</a>]
+                </p>
+            </div>
+            <div class="profile-photo">
+                <img src="assets/me.jpg" alt="Photo of Lixiang Ru">
+            </div>
+        </header>
+        
+        <main>
+            <!-- 个人简介 -->
+            <section id="biography">
+                <h2>Biography</h2>
+                <p>
+                    I'm currently a computer vision researcher at <a href="https://www.antgroup.com">Ant Group</a>. I received
+                    my Ph.D degree from the <a href="http://cs.whu.edu.cn/">School of Computer Science</a>, <a
+                        href="https://www.whu.edu.cn/">Wuhan University</a>, in 2023. Before that, I received my Bachelor's
+                    degree from <a href="http://cse.whu.edu.cn/">School of Cyber Science and Engineering</a>, <a
+                        href="https://www.whu.edu.cn/">Wuhan University</a>.
+                </p>
+                <p>
+                    My research interests include Multi-Modal Learning and Reasoning, Visual Understanding and Remote Sensing.
+                </p>
+            </section>
 
-		<table>
-			<tbody>
-				<tr>
-					<td width="720">
-						<div id="toptitle">
-							<h1>Lixiang Ru &nbsp; <img src="./assets/CN_name.png" height="32px"
-									style="margin-bottom:-5px"></h1>
-							<h1>
-							</h1>
-						</div>
+            <!-- 教育背景 -->
+            <section id="education">
+                <h2>Education</h2>
+                <ul class="experience-list">
+                    <li class="experience-item">
+                        <img src="./assets/logos/whu.png" alt="Wuhan University Logo" class="logo logo-whu">
+                        <p class="title"><a href="http://cs.whu.edu.cn/"><strong>School of Computer Science</strong></a>, <a href="https://www.whu.edu.cn/"><strong>Wuhan University</strong></a></p>
+                        <p><strong>Ph.D</strong> in Computer Science, 2018.09 - 2023.06.</p>
+                    </li>
+                    <li class="experience-item">
+                        <img src="./assets/logos/whu.png" alt="Wuhan University Logo" class="logo logo-whu">
+                        <p class="title"><a href="http://cse.whu.edu.cn/"><strong>School of Cyber Science and Engineering</strong></a>, <a href="https://www.whu.edu.cn/"><strong>Wuhan University</strong></a></p>
+                        <p><strong>B.Sc</strong> in Information Security, 2014.09 - 2018.06.</p>
+                    </li>
+                </ul>
+            </section>
+            
+            <!-- 工作经历 -->
+            <section id="experience">
+                <h2>Work Experience</h2>
+                <ul class="experience-list">
+                    <li class="experience-item">
+                        <img src="./assets/logos/ant_group.png" alt="Ant Group Logo" class="logo">
+                        <p class="title"><a href="https://www.antgroup.com"><strong>Ant Group</strong></a></p>
+                        <p><strong>Senior Algorithm Engineer</strong>, 2023.07 - Present.</p>
+                    </li>
+                    <li class="experience-item">
+                        <img src="./assets/logos/jd.png" alt="JD Explore Academy Logo" class="logo">
+                        <p class="title"><a href="#"><strong>JD Explore Academy</strong></a></p>
+                        <p><strong>Research Intern</strong>, 2021.03 - 2022.11.</p>
+                    </li>
+                </ul>
+            </section>
 
-						<h3>Ph.D</h3>
-						<p>School of Computer Science, Wuhan University.</p>
-						<p>
-							<br>
-							[<a href="mailto:rulixiang@outlook.com">Email</a>] &nbsp;
-							[<a href="https://github.com/rulixiang">GitHub</a>] &nbsp;
-							[<a href="https://scholar.google.com/citations?user=y7wegKQAAAAJ">Google Scholar</a>]&nbsp;
-						</p>
-					</td>
-					<td>
-						<img src="assets/me.jpg" border="0" width="150">
-<!-- 						<div style="font-size:150px">&#128514;</div> -->
-					</td>
-				</tr>
-				<tr>
-				</tr>
-			</tbody>
-		</table>
+            <!-- 发表文章 -->
+            <section id="publications">
+                <h2>Publications</h2>
+                <p>For a full list, please visit my <a href="https://scholar.google.com/citations?user=y7wegKQAAAAJ">Google Scholar</a> profile.</p>
+                <p><b><sup>#</sup></b>: Co-first authors.</p>
+                
+                <ul class="publications-list">
+                    
+                    <!-- 每篇论文一个 li 标签 -->
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/arxiv2025_m2-reasoning.jpg" alt="M2-Reasoning paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2507.08306">M2-Reasoning: Empowering MLLMs with Unified General and Spatial Reasoning</a></p>
+                            <p class="authors">Fudong Wang, Jiajia Liu, Jingdong Chen, Jun Zhou, Kaixiang Ji, <b>Lixiang Ru</b>, Qingpei Guo, Ruobing Zheng, Tianqi Li, Yi Yuan, Yifan Mao, Yuting Xiao, Ziping Ma, <b>(Alphabetical Order)</b></p>
+                            <p class="venue">arXiv, 2025.</p>
+                            <p class="links"><a href="https://arxiv.org/abs/2507.08306">Paper</a></p>
+                        </div>
+                    </li>
 
-		<h2>Biography</h2>
-		<p>
-			I'm currently a computer vision researcher at <a href="https://www.antgroup.com">Ant Group</a>. I received
-			my Ph.D degree from the <a href="http://cs.whu.edu.cn/">School of Computer Science</a>, <a
-				href="https://www.whu.edu.cn/">Wuhan University</a>, in 2023. Before that, I received my Bachelor's
-			degree from <a href="http://cse.whu.edu.cn/">School of Cyber Science and Engineering</a>, <a
-				href="https://www.whu.edu.cn/">Wuhan University</a>.
-		</p>
-		<p>
-			My research interests include semantic segmentation, weakly-supervised semantic segmentation,
-			self-supervised learning and other visual understanding problems.
-		</p>
-		<!-- <p style="color:#FF0000";>
-			&#128513; <b>I'll graduate the next year. Looking for job opportunities.</b>
-		</p> -->
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/arxiv2025_ming-uni.jpg" alt="M2-Reasoning paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2505.02471">Ming-Lite-Uni: Advancements in Unified Architecture for Natural Multimodal Interaction</a></p>
+                            <p class="authors">Biao Gong, Cheng Zou, Dandan Zheng, Hu Yu, Jingdong Chen, Jianxin Sun, Junbo Zhao, Jun Zhou, Kaixiang Ji, <b>Lixiang Ru</b>, Libin Wang, Qingpei Guo, Rui Liu, Weilong Chai, Xinyu Xiao, Ziyuan Huang, <b>(Alphabetical Order)</b></p>
+                            <p class="venue">arXiv, 2025.</p>
+                            <p class="links"><a href="https://arxiv.org/abs/2505.02471">Paper</a></p>
+                        </div>
+                    </li>
+                    
+                    <li class="publication-item">
+                        <div class="publication-image">
+                             <img src="assets/imgs/neurips2025_argenseg.jpg" alt="ARGenSeg paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="./">ARGenSeg: Image Segmentation with Autoregressive Image Generation Model</a></p>
+                            <p class="authors">Xiaolong Wang, <b>Lixiang Ru<sup>#</sup></b>, Ziyuan Huang, Kaixiang Ji, DanDan Zheng, Jingdong Chen, Jun Zhou</p>
+                            <p class="venue">submited to Neural Information Processing Systems (<b>NeurIPS</b>), 2025.</p>
+                            <p class="links"><a href="./">Paper</a></p>
+                        </div>
+                    </li>
 
-		<!-- <p style="color:red;">
-			&#128064; Looking for job opportunities.
-		</p> -->
+                    <li class="publication-item">
+                        <div class="publication-image">
+                             <img src="assets/imgs/nmi2025_skysense++.jpg" alt="nmi2025_skysense paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://www.nature.com/articles/s42256-025-01078-8">A Semantic-Enhanced Multi-Modal Remote Sensing Foundation Model for Earth Observation</a></p>
+                            <p class="authors">Kang Wu, Yingying Zhang, <b>Lixiang Ru<sup>#</sup></b>, Bo Dang, Jiangwei Lao, Lei Yu, Junwei Luo, Zifan Zhu, Yue Sun, Jiahao Zhang, Qi Zhu, Jian Wang, Ming Yang, Jingdong Chen, Yongjun Zhang</p>
+                            <p class="venue">Nature Machine Intelligence (<b>NMI</b>), 2025.</p>
+                            <p class="links"><a href="https://www.nature.com/articles/s42256-025-01078-8">Paper</a></p>
+                        </div>
+                    </li>
 
-		<h2>Education</h2>
-		<ul>
-			<div style="line-height: 150%;"><img src="./assets/logos/whu.png" align="right" width="70" hspace="50"
-					alt="Wuhan University">
-				<li><a href="http://cs.whu.edu.cn/"><b>School of Computer Science</b></a>, <a
-						href="https://www.whu.edu.cn/"><b>Wuhan University</b></a>.</li>
-				<b>Ph.D</b> in Computer Science,
-				<br>2018.09 - 2023.06.
-			</div>
+                    <li class="publication-item">
+                        <div class="publication-image">
+                             <img src="assets/imgs/iccv25_skysensev2.png" alt="iccv2025_skysense2 paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/html/2507.13812v1">SkySense V2: A Unified Foundation Model for Multi-modal Remote Sensing</a></p>
+                            <p class="authors">Yingying Zhang, <b>Lixiang Ru<sup>#</sup></b>, Kang Wu, Lei Yu, Lei Liang, Jingdong Chen</p>
+                            <p class="venue">International Conference on Computer Vision (<b>ICCV</b>), 2025.</p>
+                            <p class="links"><a href="https://arxiv.org/html/2507.13812v1">Paper</a></p>
+                        </div>
+                    </li>
 
-		</ul>
-		<ul>
-			<div style="line-height: 150%;"><img src="./assets/logos/whu.png" align="right" width="70" hspace="50">
-				<li><a href="http://cse.whu.edu.cn/"><b>School of Cyber Science and Engineering</b></a>, <a
-						href="https://www.whu.edu.cn/"><b>Wuhan University</b></a>.</li>
-				<b>B.Sc</b> in Information Security,
-				<br> 2014.09 - 2018.06.
-			</div>
-		</ul>
+                    <li class="publication-item">
+                        <div class="publication-image">
+                             <img src="assets/imgs/cvpr2024_skysense.jpg" alt="cvpr2024_skysense paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2312.10115">SkySense: A Multi-Modal Remote Sensing Foundation Model Towards Universal Interpretation for Earth Observation Imagery</a></p>
+                            <p class="authors">Xin Guo, Jiangwei Lao, Bo Dang, Yingying Zhang, Lei Yu, <b>Lixiang Ru</b>, Liheng Zhong, Ziyuan Huang, Kang Wu, Dingxiang Hu, Huimei He, Jian Wang, Jingdong Chen, Ming Yang, Yongjun Zhang, Yansheng Li</p>
+                            <p class="venue">Computer Vision and Pattern Recognition (<b>CVPR</b>), 2024.</p>
+                            <p class="links"><a href="https://arxiv.org/abs/2312.10115">Paper</a></p>
+                        </div>
+                    </li>
 
-		<h2>Work Experience</h2>
-		<ul>
-			<div style="line-height: 150%;"><img src="./assets/logos/ant_group.png" align="right" width="120"
-					hspace="25">
-				<li><a href="https://www.antgroup.com"><b>Ant Group</b></a>,</li>
-				<b>Senior Algorithm Engineer</b>,
-				<br>2023.07 - Now.
-			</div>
+                    <li class="publication-item">
+                        <div class="publication-image">
+                             <img src="assets/imgs/ACMMM24_PECEL.jpg" alt="acmmm2025_pecel paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://openreview.net/forum?id=OiPyYoPhAd&noteId=OiPyYoPhAd">Parameter-Efficient Complementary Expert Learning for Long-Tailed Visual Recognition</a></p>
+                            <p class="authors"><b>Lixiang Ru</b>, Xin Guo, Lei Yu, Yingying Zhang, Jiangwei Lao, Jian Wang, Jingdong Chen, Yansheng Li, Ming Yang</p>
+                            <p class="venue">ACM Multimedia 2024 (<b>ACM MM</b>), 2024.</p>
+                            <p class="links"><a href="https://openreview.net/forum?id=OiPyYoPhAd&noteId=OiPyYoPhAd">Paper</a></p>
+                        </div>
+                    </li>
 
-			<div style="line-height: 150%;"><img src="./assets/logos/jd.png" align="right" width="120" hspace="25">
-				<li><a href=""><b>JD Explore Academy</b></a> ,</li>
-				<b>Research Intern</b>,
-				<br>2021.03 - 2022.11.
-			</div>
+                    
 
-		</ul>
+                    <!-- ... 在这里继续添加其他论文 ... -->
+                    
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/CVPR23_TOCO.png" alt="TOCO paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2303.01267">Token Contrast for Weakly-Supervised Semantic Segmentation</a></p>
+                            <p class="authors"><b>Lixiang Ru</b>, Heliang Zheng, Yibing Zhan, Bo Du</p>
+                            <p class="venue">IEEE Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>), 2023.</p>
+                            <p class="links"><a href="https://arxiv.org/abs/2303.01267">Paper</a><a href="https://github.com/rulixiang/ToCo">Code</a><a href="assets/files/CVPR2023_TOCO_poster.pdf">Poster</a></p>
+                        </div>
+                    </li>
 
-		<h2>Publications</h2>
-		<p><a href="https://scholar.google.com/citations?user=y7wegKQAAAAJ">Google Scholar</a></p>
-		<b> <sup>#</sup>: Co-first authors. </b>
-		<table id="tbPublications" width="100%">
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/CVPR22_AFA.png" alt="AFA paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2203.02664 ">Learning Affinity from Attention: End-to-End Weakly-Supervised Semantic Segmentation with Transformers</a></p>
+                            <p class="authors"><b>Lixiang Ru</b>, Yibing Zhan, Baosheng Yu, Bo Du</p>
+                            <p class="venue">IEEE Conference on Computer Vision and Pattern Recognition (<b>CVPR</b>), 2022.</p>
+                            <p class="links"><a href="https://arxiv.org/abs/2203.02664">Paper</a><a
+						href="https://github.com/rulixiang/afa">Code</a><a
+						href="assets/files/CVPR2022_AFA_poster.pdf">Poster</a><a
+						href="https://rulixiang.github.io/afa">Project</a></p>
+                        </div>
+                    </li>
 
-			<tr>
-				<td width="306"> <img src="assets/imgs/arxiv2025_m2-reasoning.jpg" width="290px" border="1"> </td>
-				<td>
-					<a href="https://arxiv.org/abs/2507.08306">M2-Reasoning: Empowering MLLMs with Unified General and Spatial Reasoning</a>
-					<br>Fudong Wang, Jiajia Liu, Jingdong Chen, Jun Zhou, Kaixiang Ji, <b>Lixiang Ru</b>, Qingpei Guo, Ruobing Zheng, Tianqi Li, Yi Yuan, Yifan Mao, Yuting Xiao, Ziping Ma, <b>(Alphabetical Order)</b>
-					<br> (<b><i>arXiv</i></b>), 2025.
-					<br>[<a href="https://arxiv.org/abs/2507.08306">Paper</a>]
-				</td>
-			</tr>
-		</table>
-		<table id="tbPublications" width="100%">
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/IJCV22_VWL.png" alt="VWL paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://arxiv.org/abs/2202.04812">Weakly-Supervised Semantic Segmentation with Visual Words Learning and Hybrid Pooling</a></p>
+                            <p class="authors"><b>Lixiang Ru</b>, Bo Du, Yibing Zhan, Chen Wu</p>
+                            <p class="venue">International Journal of Computer Vision (<b>IJCV</b>), 2022.</p>
+                            <p class="links"><a href="https://arxiv.org/abs/2202.04812">Paper</a><a
+						href="https://github.com/rulixiang/vwe/tree/master/v2">Code</a></p>
+                        </div>
+                    </li>
 
-			<tr>
-				<td width="306"> <img src="assets/imgs/arxiv2025_ming-uni.jpg" width="290px" border="1"> </td>
-				<td>
-					<a href="https://arxiv.org/abs/2505.02471">Ming-Lite-Uni: Advancements in Unified Architecture for Natural Multimodal Interaction</a>
-					<br>Biao Gong, Cheng Zou, Dandan Zheng, Hu Yu, Jingdong Chen, Jianxin Sun, Junbo Zhao, Jun Zhou, Kaixiang Ji, <b>Lixiang Ru</b>, Libin Wang, Qingpei Guo, Rui Liu, Weilong Chai, Xinyu Xiao, Ziyuan Huang, <b>(Alphabetical Order)</b>
-					<br> (<b><i>arXiv</i></b>), 2025.
-					<br>[<a href="https://arxiv.org/abs/2505.02471">Paper</a>]
-				</td>
-			</tr>
-		</table>
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/IJCAI21_VWE.png" alt="VWE paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://www.ijcai.org/proceedings/2021/136">Learning Visual Words for Weakly-Supervised Semantic Segmentation</a></p>
+                            <p class="authors"><b>Lixiang Ru</b>, Bo Du, Yibing Zhan, Chen Wu</p>
+                            <p class="venue">International Joint Conference on Artificial Intelligence (<b>IJCAI</b>), 2021.</p>
+                            <p class="links"><a href="https://www.ijcai.org/proceedings/2021/136">Paper</a><a
+						href="https://github.com/rulixiang/vwe">Code</a>
+					<a href="assets/files/IJCAI21_VWE_Slide.pdf">Slide</a>
+					<a href="assets/files/IJCAI21_VWE_Poster.pdf">Poster</a></p>
+                        </div>
+                    </li>
 
-		<table id="tbPublications" width="100%">
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/TIP21-CorrFusion.png" alt="CorrFusion paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://ieeexplore.ieee.org/document/9271913">Multi-Temporal Scene Classification and Scene Change Detection with Correlation based Fusion</a></p>
+                            <p class="authors">b>Lixiang Ru</b>, Bo Du, Chen Wu</p>
+                            <p class="venue">IEEE Transactions on Image Processing (<b>TIP</b>), 2020.</p>
+                            <p class="links"><a href="https://ieeexplore.ieee.org/document/9271913">Paper</a><a
+						href="https://github.com/rulixiang/CorrFusionNet">Code</a><a
+						href="http://sigma.whu.edu.cn/newspage.php?q=2021_06_27">Dataset</a></p>
+                        </div>
+                    </li>
 
-			<tr>
-				<td width="306"> <img src="assets/imgs/neurips2025_argenseg.jpg" width="290px" border="1"> </td>
-				<td>
-					<a href="./">ARGenSeg: Image Segmentation with Autoregressive Image Generation Model</a>
-					<br>Xiaolong Wang, <b>Lixiang Ru<sup>#</sup></b>, Ziyuan Huang, Kaixiang Ji, DanDan Zheng, Jingdong Chen, Jun Zhou 
-					<br>Neural Information Processing Systems (<b><i>NeurIPS</i></b>), 2025.
-					<br>[<a href="./">Paper</a>]
-				</td>
-			</tr>
-		</table>
-
-		<table id="tbPublications" width="100%">
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/nmi2025_skysense++.jpg" width="290px" border="1"> </td>
-				<td>
-					<a href="./">A Semantic-Enhanced Multi-Modal Remote Sensing Foundation Model for Earth Observation</a>
-					<br> Kang Wu, Yingying Zhang, <b>Lixiang Ru<sup>#</sup></b>, Bo Dang, Jiangwei Lao, Lei Yu, Junwei Luo, Zifan Zhu, Yue Sun, Jiahao Zhang, Qi Zhu, Jian Wang, Ming Yang, Jingdong Chen, Yongjun Zhang
-					<br>Nature Machine Intelligence(<b><i>NMI</i></b>), 2025.
-					<br>[<a href="./">Paper</a>]
-				</td>
-			</tr>
-		</table>
-
-		<table id="tbPublications" width="100%">
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/iccv25_skysensev2.png" width="290px" border="1"> </td>
-				<td>
-					<a href="https://arxiv.org/html/2507.13812v1">SkySense V2: A Unified Foundation Model for Multi-modal Remote Sensing</a>
-					<br>Yingying Zhang, <b>Lixiang Ru<sup>#</sup></b>, Kang Wu, Lei Yu, Lei Liang, Jingdong Chen
-					<br>International Conference on Computer Vision (<b><i>ICCV</i></b>), 2025.
-					<br>[<a href="https://arxiv.org/html/2507.13812v1">Paper</a>]
-				</td>
-			</tr>
-		</table>
-
-		<table id="tbPublications" width="100%">
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/cvpr2024_skysense.jpg" width="290px" border="1"> </td>
-				<td>
-					<a href="https://arxiv.org/abs/2312.10115">SkySense: A Multi-Modal Remote Sensing Foundation Model Towards Universal Interpretation for Earth Observation Imagery</a>
-					<br>Xin Guo, Jiangwei Lao, Bo Dang, Yingying Zhang, Lei Yu, <b>Lixiang Ru</b>, Liheng Zhong, Ziyuan Huang, Kang Wu, Dingxiang Hu, Huimei He, Jian Wang, Jingdong Chen, Ming Yang, Yongjun Zhang, Yansheng Li
-					<br>IEEE Conference on Computer Vision and Pattern Recognition (<b><i>CVPR</i></b>), 2024.
-					<br>[<a href="https://arxiv.org/abs/2312.10115">Paper</a>]
-				</td>
-			</tr>
-		</table>
-
-		<!-- <h4>#Parameter-Efficient Finetuning; #Long-Tailed Visual Recognition</h4> -->
-		<table id="tbPublications" width="100%">
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/ACMMM24_PECEL.jpg" width="290px" border="1"> </td>
-				<td>
-					<a href="./">Parameter-Efficient Complementary Expert Learning for Long-Tailed Visual Recognition</a>
-					<br><b>Lixiang Ru</b>, Xin Guo, Lei Yu, Yingying Zhang, Jiangwei Lao, Jian Wang, Jingdong Chen, Yansheng Li, Ming Yang
-					<br>ACM Multimedia 2024 (<b><i>ACM MM</i></b>), 2024.
-					<br>[<a href="./">Paper</a>]
-				</td>
-			</tr>
-		</table>
-
-		<!-- <h4>#Computer Vision; #Weakly-Supervised Semantic Segmentation</h4> -->
-		<table id="tbPublications" width="100%">
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/CVPR23_TOCO.png" width="290px" border="1"> </td>
-				<td>
-					<a href="https://arxiv.org/abs/2303.01267">Token Contrast for Weakly-Supervised Semantic
-						Segmentation</a>
-					<br><b>Lixiang Ru</b>, Heliang Zheng, Yibing Zhan, Bo Du
-					<br>IEEE Conference on Computer Vision and Pattern Recognition (<b><i>CVPR</i></b>), 2023.
-					<br>[<a href="https://arxiv.org/abs/2303.01267">Paper</a>][<a
-						href="https://github.com/rulixiang/ToCo">Code</a>][<a
-						href="assets/files/CVPR2023_TOCO_poster.pdf">Poster</a>]
-				</td>
-			</tr>
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/CVPR22_AFA.png" width="290px" border="1"> </td>
-				<td>
-					<a href="https://arxiv.org/abs/2203.02664 ">Learning Affinity from Attention: End-to-End
-						Weakly-Supervised Semantic Segmentation with Transformers</a>
-					<br><b>Lixiang Ru</b>, Yibing Zhan, Baosheng Yu, Bo Du
-					<br>IEEE Conference on Computer Vision and Pattern Recognition (<b><i>CVPR</i></b>), 2022.
-					<br>[<a href="https://arxiv.org/abs/2203.02664">Paper</a>][<a
-						href="https://github.com/rulixiang/afa">Code</a>][<a
-						href="assets/files/CVPR2022_AFA_poster.pdf">Poster</a>][<a
-						href="https://rulixiang.github.io/afa">Project</a>]
-				</td>
-			</tr>
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/IJCV22_VWL.png" width="290px"> </td>
-				<td>
-					<a href="https://arxiv.org/abs/2202.04812">Weakly-Supervised Semantic Segmentation with Visual Words
-						Learning and Hybrid
-						Pooling</a>
-					<br><b>Lixiang Ru</b>, Bo Du, Yibing Zhan, Chen Wu
-					<br>International Journal of Computer Vision (<b><i>IJCV</i></b>), 2022.
-					<br>[<a href="https://arxiv.org/abs/2202.04812">Paper</a>][<a
-						href="https://github.com/rulixiang/vwe/tree/master/v2">Code</a>]
-				</td>
-			</tr>
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/IJCAI21_VWE.png" width="290px"> </td>
-				<td>
-					<a href="https://www.ijcai.org/proceedings/2021/136">Learning Visual Words for Weakly-Supervised
-						Semantic Segmentation</a>
-					<br><b>Lixiang Ru</b>, Bo Du, Chen Wu
-					<br>International Joint Conference on Artificial Intelligence (<i><b>IJCAI</b></i>), 2021.
-					<br>[<a href="https://www.ijcai.org/proceedings/2021/136">Paper</a>][<a
-						href="https://github.com/rulixiang/vwe">Code</a>]
-					[<a href="assets/files/IJCAI21_VWE_Slide.pdf">Slide</a>]
-					[<a href="assets/files/IJCAI21_VWE_Poster.pdf">Poster</a>]
-				</td>
-			</tr>
-
-		</table>
-
-		<!-- <h4>#Remote Sensing; #Change Detection</h4> -->
-		<table id="tbPublications" width="100%">
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/IJAEOG21_CarDet.png" width="290px"> </td>
-				<td>
-					<a href="https://www.sciencedirect.com/science/article/pii/S0303243421002105">An Investigation of
-						Traffic Density Changes inside Wuhan during the COVID-19 Epidemic with GF-2 Time-Series
-						Images</a>
-					<br>Chen Wu, Yinong Guo, Haonan Guo, Jingwen Yuan, <b>Lixiang Ru</b>, Hongruixuan Chen, Bo Du,
-					Liangpei Zhang
-					<br>International Journal of Applied Earth Observation and Geoinformation, 2021.
-					<br>[<a href="https://www.sciencedirect.com/science/article/pii/S0303243421002105">Paper</a>]
-				</td>
-			</tr>
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/TIP21-CorrFusion.png" width="290px"> </td>
-				<td>
-					<a href="https://ieeexplore.ieee.org/document/9271913">Multi-Temporal Scene Classification and
-						Scene Change
-						Detection with Correlation based Fusion</a>
-					<br><b>Lixiang Ru</b>, Bo Du, Chen Wu,
-					<br>IEEE Transactions on Image Processing (<i><b>TIP</b></i>), 2020.
-					<br>[<a href="https://ieeexplore.ieee.org/document/9271913">Paper</a>] [<a
-						href="https://github.com/rulixiang/CorrFusionNet">Code</a>] [<a
-						href="http://sigma.whu.edu.cn/newspage.php?q=2021_06_27">Dataset</a>]
-				</td>
-			</tr>
-
-			<tr>
-				<td width="306"> <img src="assets/imgs/TGRS19_DSFA.png" width="290px"> </td>
-				<td>
-					<a href="https://ieeexplore.ieee.org/abstract/document/8824216">Unsupervised Deep Slow Feature
-						Analysis for Change Detection in Multi-Temporal Remote Sensing Images</a>
-					<br>Bo Du, <b>Lixiang Ru</b>, Chen Wu, Liangpei Zhang,
-					<br>IEEE Transactions on Geoscience and Remote Sensing (<i><b>TGRS</b></i>), 2019.
-					<br>[<a href="https://ieeexplore.ieee.org/abstract/document/8824216">Paper</a>] [<a
-						href="https://github.com/rulixiang/DSFANet">Code</a>]
-				</td>
-			</tr>
-
-		</table>
-
-		<!-- <h2>Competitions</h2>
-
-		<ul>
-			<li>2018.11 &nbsp;&nbsp; Aerospace Remote Sensing Cup of High Resolution Application Solution Competition,
-				&nbsp;&nbsp; <b>Rank 4/94</b>;</li>
-			<li>2015.11 &nbsp;&nbsp; National College Students Mathematical Competition (Hubei Province), &nbsp;&nbsp;
-				<b>First-Class Prize</b>;
-			</li>
-		</ul> -->
-
-
-		<h2>Honors &amp; Awards</h2>
-		<ul>
-			<li>2023.07 &nbsp;&nbsp; <b><i>Ant Star</i></b> Program; &nbsp;&nbsp; Ant Group;</li>
-			<li>2023.04 &nbsp;&nbsp; Outstanding Graduate Student; &nbsp;&nbsp; Wuhan University;</li>
-			<li>2022.10 &nbsp;&nbsp; National Scholarship; &nbsp;&nbsp; Wuhan University;</li>
-			<li>2022.10 &nbsp;&nbsp; Outstanding Student Scholarship; &nbsp;&nbsp; Wuhan
-				University;</li>
-			<li>2022.05 &nbsp;&nbsp; Second Prize of Doctoral Forum; &nbsp;&nbsp; School of Computer Science, Wuhan
-				University;</li>
-			<li>2021.11 &nbsp;&nbsp; National Scholarship; &nbsp;&nbsp; Wuhan University;</li>
-			<li>2021.11 &nbsp;&nbsp; Outstanding Student Scholarship; &nbsp;&nbsp; Wuhan
-				University;</li>
-			<li>2020.11 &nbsp;&nbsp; Yisheng Scholarship; &nbsp;&nbsp; Wuhan University;</li>
-			<li>2020.04 &nbsp;&nbsp; <a href="./assets/files/GRSS_TPPA_2020.pdf">IEEE GRSS Transactions Prize Paper
-					Award</a>; &nbsp;&nbsp; IEEE GRSS Society;</li>
-			<li>2019.11 &nbsp;&nbsp; Outstanding Student Scholarship; &nbsp;&nbsp; Wuhan
-				University;</li>
-			<li>2016.10 &nbsp;&nbsp; Outstanding Student Scholarship; &nbsp;&nbsp; Wuhan University;</li>
-			<li>2016.10 &nbsp;&nbsp; National Encouragement Scholarship; &nbsp;&nbsp; Wuhan University;</li>
-			<li>2015.10 &nbsp;&nbsp; Outstanding Student Scholarship; &nbsp;&nbsp; Wuhan University;</li>
-			<li>2015.10 &nbsp;&nbsp; National Encouragement Scholarship; &nbsp;&nbsp; Wuhan University;</li>
-		</ul>
-
-		<h2>Academic Service</h2>
-		<ul>
-			<li>Journal Reviewer: TPAMI, IJCV, TIP, TNNLS, TMM, TCSVT, TGRS, TAI, PR, Neurocomputing, ...</li>
-			<li>Conference Reviewer: CVPR, ICCV, NeurIPS, ECCV, AAAI, ACM MM, ...</li>
-		</ul>
-
-<!-- 		<h2>Projects</h2>
-		<ul>
-			<li>
-				<table>
-					<thead>
-						<b>LaneDet</b>: A model to detect and classify real-world lane lines. This project achieves >
-						87%
-						lane detection accuarcy and > 93% lane classification accuarcy, and has been applied to a data
-						annotation
-						platform, saving about 50% annotation cost.
-					</thead>
-					<tbody style="text-align: center;">
-						<tr>
-							<td width="360"> <video src="assets\project\lanedet-jd-2022\lanedet-160.mp4" height="160"
-									width="360" controls></td>
-						</tr>
-						<tr>
-							<td width="360"> Demo Video</td>
-						</tr>
-					</tbody>
-				</table>
-			</li>
-		</ul> -->
-
-		<div id="footer">
-			<div id="footer-text"></div>
-		</div>
-
-	</div>
+                    <li class="publication-item">
+                        <div class="publication-image">
+                            <img src="assets/imgs/TGRS19_DSFA.png" alt="DSFA paper thumbnail">
+                        </div>
+                        <div class="publication-details">
+                            <p class="title"><a href="https://ieeexplore.ieee.org/abstract/document/8824216">Unsupervised Deep Slow Feature Analysis for Change Detection in Multi-Temporal Remote Sensing Images</a></p>
+                            <p class="authors">Bo Du, <b>Lixiang Ru</b>, Chen Wu, Liangpei Zhang,</p>
+                            <p class="venue">IEEE Transactions on Geoscience and Remote Sensing (<b>TGRS</b>), 2019.</p>
+                            <p class="links"><a href="https://ieeexplore.ieee.org/abstract/document/8824216">Paper</a><a
+						href="https://github.com/rulixiang/DSFANet">Code</a></p>
+                        </div>
+                    </li>
 
 
 
-	<div align='center'>
-		<br>
-		<a href="https://info.flagcounter.com/f8Fc"><img
-				src="https://s01.flagcounter.com/count/f8Fc/bg_FFFFFF/txt_000000/border_FFFFFF/columns_8/maxflags_24/viewers_0/labels_0/pageviews_1/flags_0/percent_0/"
-				alt="Flag Counter" border="0"></a>
-	</div>
+                </ul>
+                <!-- <p><i>(为保持简洁，此处仅展示部分论文，你可以按此格式添加所有论文。)</i></p> -->
+            </section>
+            
+            <!-- 荣誉奖项 -->
+            <section id="honors">
+                <h2>Honors &amp; Awards</h2>
+                <ul class="awards-list">
+                    <li>2023.07 &nbsp;&nbsp; <b><i>Ant Star</i></b> Program; &nbsp;&nbsp; Ant Group;</li>
+                    <li>2023.04 &nbsp;&nbsp; Outstanding Graduate Student; &nbsp;&nbsp; Wuhan University;</li>
+                    <li>2022.10 &nbsp;&nbsp; National Scholarship; &nbsp;&nbsp; Wuhan University;</li>
+                    <li>2022.05 &nbsp;&nbsp; Second Prize of Doctoral Forum; &nbsp;&nbsp; School of Computer Science, Wuhan University;</li>
+                    <li>2021.11 &nbsp;&nbsp; National Scholarship; &nbsp;&nbsp; Wuhan University;</li>
+                    <li>2020.04 &nbsp;&nbsp; <a href="./assets/files/GRSS_TPPA_2020.pdf">IEEE GRSS Transactions Prize Paper Award</a>; &nbsp;&nbsp; IEEE GRSS Society;</li>
+                    <!-- ... 更多奖项 ... -->
+                </ul>
+            </section>
 
+            <!-- 学术服务 -->
+            <section id="service">
+                <h2>Academic Service</h2>
+                <ul>
+                    <li><strong>Journal Reviewer:</strong> TPAMI, IJCV, TIP, TNNLS, TMM, TCSVT, TGRS, TAI, PR, Neurocomputing, ...</li>
+                    <li><strong>Conference Reviewer:</strong> CVPR, ICCV, NeurIPS, ECCV, AAAI, ACM MM, ...</li>
+                </ul>
+            </section>
+        </main>
+        
+        <footer id="footer">
+            <div id="footer-text">
+                <p>&copy; 2024 Lixiang Ru. Last updated on <script>document.write(new Date().toLocaleDateString());</script>.</p>
+            </div>
+            <div align='center'>
+                <a href="https://info.flagcounter.com/f8Fc"><img
+                        src="https://s01.flagcounter.com/count/f8Fc/bg_FFFFFF/txt_000000/border_FFFFFF/columns_8/maxflags_24/viewers_0/labels_0/pageviews_1/flags_0/percent_0/"
+                        alt="Flag Counter" border="0"></a>
+            </div>
+        </footer>
 
+    </div>
 </body>
-
 </html>
+
